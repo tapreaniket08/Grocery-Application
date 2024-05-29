@@ -28,32 +28,32 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		User newUser = userServiceImpl.createUser(user);
-		return new ResponseEntity(newUser, HttpStatus.CREATED);
+		return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<User>> getAllUser() {
 		List<User> allUser = userServiceImpl.getAllUser();
-		return new ResponseEntity(allUser, HttpStatus.OK);
+		return new ResponseEntity<List<User>>(allUser, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable long id) {
 		User user = userServiceImpl.getUserById(id);
 		System.out.println(id);
-		return new ResponseEntity(user, HttpStatus.OK);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
 		User updatedUser = userServiceImpl.updateUser(id, user);
-		return new ResponseEntity(updatedUser, HttpStatus.OK);
+		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable Long id) {
 		userServiceImpl.deleteUser(id);
-		return new ResponseEntity(  "User is Deleted from database",HttpStatus.OK);
+		return new ResponseEntity<String>(  "User is Deleted from database",HttpStatus.OK);
 	}
 
 }
